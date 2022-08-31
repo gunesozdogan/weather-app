@@ -1,7 +1,7 @@
 export default getData;
 
 import { getCoordinates, getForecast } from './modules/api';
-import initialize from './modules/UI';
+import UI from './modules/UI.js';
 
 async function getData(city) {
     try {
@@ -27,4 +27,4 @@ async function getData(city) {
     }
 }
 
-initialize();
+UI.initialize();
