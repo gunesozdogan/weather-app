@@ -76,6 +76,7 @@
 
 /* Main properties */
 .main-properties {
+    margin-top: 6rem;
     display: flex;
     flex-direction: column;
     color: #eee;
@@ -225,8 +226,9 @@
 .day-min-temp {
     font-size: 1.3rem;
 }
-.day-svg {
-    width: 6rem;
-    height: 6rem;
+
+.day-svg svg {
+    width: 8rem;
+    height: 8rem;
     fill: #eee;
 }
