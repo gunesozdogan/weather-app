@@ -23,7 +23,9 @@ async function getData(city) {
         console.log(data);
         return data;
     } catch (err) {
-        console.log(err);
+        const loadingText = document.querySelector('.loading-text');
+        loadingText.textContent = 'City could not be found!';
+        loadingText.style.letterSpacing = '0.2rem';
     }
 }
 

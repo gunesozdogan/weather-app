@@ -3,12 +3,17 @@ import dateModule from './date.js';
 import utilityModule from './utility.js';
 
 const UI = (function () {
-    const searchBtn = document.querySelector('.search-btn');
+    const _searhBtn = document.querySelector('.search-btn');
+    const _loadingText = document.querySelector('.loading-text');
 
     async function _displayWeather(city = 'Los Angeles') {
+        // Sets loading text
+        _loadingText.textContent = 'Loading ...';
+        _loadingText.style.letterSpacing = '0.6rem';
         // Modules
-        console.log(city);
         const myData = await getData(city);
+
+        if (!myData) return;
         const myUtilityModule = utilityModule;
         const myDateModule = dateModule;
         const myDataTimeOfRequest = myUtilityModule.changeTimeZone(
@@ -36,7 +41,7 @@ const UI = (function () {
         div.innerHTML = myUtilityModule.getWeatherIcons(
             myData.current.weather[0].icon
         );
-        // Removes old svg if it exists
+        // Removes old weather icon if it exists
         const oldSvg = cloudTypeSection.querySelector('.svg-container');
         if (oldSvg) oldSvg.remove();
 
@@ -98,11 +103,14 @@ const UI = (function () {
 
             div.innerHTML = myUtilityModule.getWeatherIcons(curIconCode);
 
-            // Removes old svg if it exists
+            // Removes old weather icon if it exists
             const oldSvg = spanElement.querySelector('.daily-svg-container');
             if (oldSvg) oldSvg.remove();
-            // Displays new svg
+            // Displays new weather icon
             spanElement.prepend(div);
+
+            // Removes loading text
+            _loadingText.textContent = '';
         }
     }
 
@@ -112,11 +120,11 @@ const UI = (function () {
 
     function _displayWeatherForInput() {
         const searchInput = document.querySelector('.search-bar').value;
-        console.log(searchInput);
         _displayWeather(searchInput);
     }
 
-    searchBtn.addEventListener('click', _displayWeatherForInput);
+    _searhBtn.addEventListener('click', _displayWeatherForInput);
+
     return { initialize };
 })();
 
