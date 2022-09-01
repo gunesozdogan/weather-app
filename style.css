@@ -64,10 +64,23 @@
     stroke: #fff;
 }
 
+/* Loading section */
+.loading-container {
+    display: flex;
+    color: #eee;
+    font-size: 2rem;
+    justify-content: left;
+    padding-left: 4rem;
+    letter-spacing: 0.6rem;
+    font-weight: 600;
+    height: 4rem;
+}
+
 .main-container {
     display: Flex;
     flex-direction: column;
 }
+
 /* Main section*/
 .main-section {
     display: flex;
@@ -76,14 +89,14 @@
 
 /* Main properties */
 .main-properties {
-    margin-top: 6rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     color: #eee;
     padding: 0rem 4rem;
     gap: 2rem;
     width: 50vw;
-    min-width: 10rem;
+    min-width: 15rem;
 }
 
 .cloud-type-section {
