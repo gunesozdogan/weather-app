@@ -5,17 +5,20 @@ import utilityModule from './utility.js';
 const UI = (function () {
     const _searhBtn = document.querySelector('.search-btn');
     const _loadingText = document.querySelector('.loading-text');
+    const _changeUnitBtn = document.querySelector('.unit-change-btn');
+
+    // Modules
+    const myUtilityModule = utilityModule;
+    const myDateModule = dateModule;
 
     async function _displayWeather(city = 'Los Angeles') {
         // Sets loading text
         _loadingText.textContent = 'Loading ...';
         _loadingText.style.letterSpacing = '0.6rem';
-        // Modules
-        const myData = await getData(city);
 
+        const myData = await getData(city);
         if (!myData) return;
-        const myUtilityModule = utilityModule;
-        const myDateModule = dateModule;
+
         const myDataTimeOfRequest = myUtilityModule.changeTimeZone(
             myUtilityModule.getDate(myData.current.dt),
             myData.timezone
@@ -123,7 +126,38 @@ const UI = (function () {
         _displayWeather(searchInput);
     }
 
+    function _changeTempUnit() {
+        // If current display unit is celcius
+        if (this.textContent.includes('\u{2109}')) {
+            this.textContent = 'Display in ' + '\u{2103}';
+
+            const temps = [...document.querySelectorAll('.celcius')];
+            temps.forEach((temp) => {
+                const tempInCelcius = temp.textContent.split(' ')[0];
+                const tempInFahrenheit =
+                    myUtilityModule.celciusToFahrenheit(tempInCelcius);
+                temp.textContent = `${tempInFahrenheit} \u{2109}`;
+                temp.classList.remove('celcius');
+                temp.classList.add('fahrenheit');
+            });
+            // If current dispaly unit is fahrenheit
+        } else {
+            this.textContent = 'Display in ' + '\u{2109}';
+
+            const temps = [...document.querySelectorAll('.fahrenheit')];
+            temps.forEach((temp) => {
+                const tempInFahrenheit = temp.textContent.split(' ')[0];
+                const tempInCelcius =
+                    myUtilityModule.fahrenheitToCelsius(tempInFahrenheit);
+                temp.textContent = `${tempInCelcius} \u{2103}`;
+                temp.classList.remove('fahrenheit');
+                temp.classList.add('celcius');
+            });
+        }
+    }
+
     _searhBtn.addEventListener('click', _displayWeatherForInput);
+    _changeUnitBtn.addEventListener('click', _changeTempUnit);
 
     return { initialize };
 })();
