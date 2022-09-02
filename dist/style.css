@@ -19,6 +19,7 @@
     background-position: center;
     background-size: cover;
     min-width: 80rem;
+    min-height: 100vh;
 }
 
 /* SEARCH BAR */

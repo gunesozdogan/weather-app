@@ -52,7 +52,7 @@ const UI = (function () {
         cloudType.textContent = myUtilityModule.upperCaseInitials(
             myData.current.weather[0].description
         );
-        cityName.textContent = city;
+        cityName.textContent = city[0].toUpperCase() + city.slice(1);
         date.textContent = myDateModule.getFullDate(myDataTimeOfRequest);
         time.textContent = myDateModule.getFullTime(myDataTimeOfRequest);
         temp.textContent =
