@@ -11,14 +11,14 @@
 
 .outer-container {
     display: flex;
+    flex: 1;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
         url('./img/background.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    min-width: 80rem;
 }
 
 /* SEARCH BAR */
