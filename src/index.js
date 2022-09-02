@@ -20,7 +20,6 @@ async function getData(city) {
             timezone,
             timeOffset,
         };
-        console.log(data);
         return data;
     } catch (err) {
         const loadingText = document.querySelector('.loading-text');
